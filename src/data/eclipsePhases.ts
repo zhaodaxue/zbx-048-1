@@ -30,14 +30,14 @@ export const ECLIPSE_PHASES: EclipsePhase[] = [
     id: 'end',
     name: '结束',
     time: '11:15',
-    description: '整个日偏食观测活动结束，感谢观测。',
+    description: '观测活动圆满结束，感谢您的参与。',
   },
 ];
 
 export function getPhaseDate(phaseTime: string): Date {
   const [h, m] = phaseTime.split(':').map(Number);
-  const d = new Date();
-  d.setHours(h, m, 0, 0);
+  const [year, month, day] = ECLIPSE_DATE.split('-').map(Number);
+  const d = new Date(year, month - 1, day, h, m, 0, 0);
   return d;
 }
 

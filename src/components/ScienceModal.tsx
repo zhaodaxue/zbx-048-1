@@ -1,9 +1,19 @@
 import { X } from 'lucide-react';
+import { useEffect } from 'react';
 import { ECLIPSE_PHASES } from '@/data/eclipsePhases';
 import { useEclipseStore } from '@/store/useEclipseStore';
 
 export default function ScienceModal() {
   const { activeModal, setActiveModal } = useEclipseStore();
+
+  useEffect(() => {
+    if (!activeModal) return;
+    function handleKey(e: KeyboardEvent) {
+      if (e.key === 'Escape') setActiveModal(null);
+    }
+    window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
+  }, [activeModal, setActiveModal]);
 
   if (!activeModal) return null;
 
@@ -29,6 +39,7 @@ export default function ScienceModal() {
           onClick={() => setActiveModal(null)}
           className="absolute top-4 right-4 p-1 rounded-full transition-colors"
           style={{ color: '#8892b0' }}
+          aria-label="关闭"
         >
           <X size={20} />
         </button>
@@ -50,6 +61,9 @@ export default function ScienceModal() {
         <p className="text-lg leading-relaxed" style={{ color: '#e8eaf6' }}>
           {phase.description}
         </p>
+        <div className="mt-6 text-xs" style={{ color: '#5a6080' }}>
+          按 Esc 键或点击空白处关闭
+        </div>
       </div>
     </div>
   );

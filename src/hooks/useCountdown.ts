@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { ECLIPSE_PHASES, getPhaseDate } from '@/data/eclipsePhases';
 import { useEclipseStore } from '@/store/useEclipseStore';
 
@@ -16,17 +16,16 @@ export function useCountdown(): CountdownState {
   const [now, setNow] = useState(() => new Date(Date.now() + timeOffset));
 
   useEffect(() => {
+    setNow(new Date(Date.now() + timeOffset));
     const interval = setInterval(() => {
       setNow(new Date(Date.now() + timeOffset));
     }, 1000);
     return () => clearInterval(interval);
   }, [timeOffset]);
 
-  const getNow = useCallback(() => new Date(Date.now() + timeOffset), [timeOffset]);
-
   const phases = ECLIPSE_PHASES.map((p) => getPhaseDate(p.time));
 
-  const currentNow = getNow();
+  const currentNow = now;
   const isBeforeStart = currentNow < phases[0];
   const isFinished = currentNow >= phases[phases.length - 1];
 

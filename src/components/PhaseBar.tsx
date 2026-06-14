@@ -3,11 +3,9 @@ import { useCountdown } from '@/hooks/useCountdown';
 import { useEclipseStore } from '@/store/useEclipseStore';
 
 export default function PhaseBar() {
-  const { currentPhaseIndex } = useCountdown();
+  const { currentPhaseIndex, now } = useCountdown();
   const { viewMode, setActiveModal } = useEclipseStore();
   const isOutdoor = viewMode === 'outdoor';
-
-  const now = new Date(Date.now() + useEclipseStore.getState().timeOffset);
   const maxTime = getPhaseDate(ECLIPSE_PHASES[ECLIPSE_PHASES.length - 1].time);
   const startTime = getPhaseDate(ECLIPSE_PHASES[0].time);
   const totalDuration = maxTime.getTime() - startTime.getTime();
