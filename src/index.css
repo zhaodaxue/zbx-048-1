@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  background: #0a0e27;
+  color: #e8eaf6;
+  overflow: hidden;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+@keyframes pulse-warning {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.stars-layer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.stars-layer::before,
+.stars-layer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+}
+
+.stars-layer::before {
+  width: 2px;
+  height: 2px;
+  box-shadow:
+    120px 40px 0 0 rgba(255,255,255,0.6),
+    340px 180px 0 0 rgba(255,255,255,0.4),
+    580px 60px 0 0 rgba(255,255,255,0.7),
+    790px 220px 0 0 rgba(255,255,255,0.3),
+    1020px 90px 0 0 rgba(255,255,255,0.5),
+    1250px 300px 0 0 rgba(255,255,255,0.6),
+    1400px 50px 0 0 rgba(255,255,255,0.4),
+    1600px 200px 0 0 rgba(255,255,255,0.7),
+    180px 350px 0 0 rgba(255,255,255,0.5),
+    450px 420px 0 0 rgba(255,255,255,0.3),
+    720px 500px 0 0 rgba(255,255,255,0.6),
+    950px 380px 0 0 rgba(255,255,255,0.4),
+    1100px 480px 0 0 rgba(255,255,255,0.7),
+    1350px 550px 0 0 rgba(255,255,255,0.5),
+    1550px 400px 0 0 rgba(255,255,255,0.3),
+    250px 600px 0 0 rgba(255,255,255,0.4),
+    500px 700px 0 0 rgba(255,255,255,0.6),
+    800px 650px 0 0 rgba(255,255,255,0.5),
+    1050px 720px 0 0 rgba(255,255,255,0.3),
+    1300px 680px 0 0 rgba(255,255,255,0.7),
+    60px 800px 0 0 rgba(255,255,255,0.4),
+    380px 850px 0 0 rgba(255,255,255,0.6),
+    650px 900px 0 0 rgba(255,255,255,0.5),
+    900px 820px 0 0 rgba(255,255,255,0.3),
+    1200px 870px 0 0 rgba(255,255,255,0.7);
+  animation: twinkle 4s ease-in-out infinite;
+}
+
+.stars-layer::after {
+  width: 1px;
+  height: 1px;
+  box-shadow:
+    200px 100px 0 0 rgba(255,255,255,0.4),
+    480px 250px 0 0 rgba(255,255,255,0.3),
+    680px 130px 0 0 rgba(255,255,255,0.5),
+    870px 310px 0 0 rgba(255,255,255,0.2),
+    1100px 160px 0 0 rgba(255,255,255,0.4),
+    1330px 380px 0 0 rgba(255,255,255,0.3),
+    1500px 120px 0 0 rgba(255,255,255,0.5),
+    100px 470px 0 0 rgba(255,255,255,0.4),
+    350px 530px 0 0 rgba(255,255,255,0.2),
+    620px 440px 0 0 rgba(255,255,255,0.5),
+    850px 560px 0 0 rgba(255,255,255,0.3),
+    1080px 600px 0 0 rgba(255,255,255,0.4),
+    1300px 500px 0 0 rgba(255,255,255,0.2),
+    1500px 630px 0 0 rgba(255,255,255,0.5),
+    300px 750px 0 0 rgba(255,255,255,0.3),
+    550px 820px 0 0 rgba(255,255,255,0.4),
+    780px 780px 0 0 rgba(255,255,255,0.2),
+    1000px 860px 0 0 rgba(255,255,255,0.5),
+    1250px 800px 0 0 rgba(255,255,255,0.3),
+    1450px 900px 0 0 rgba(255,255,255,0.4);
+  animation: twinkle 6s ease-in-out infinite 2s;
+}
+
+.safety-warning-bar {
+  background: linear-gradient(90deg, rgba(255,45,45,0.2) 0%, rgba(255,45,45,0.35) 50%, rgba(255,45,45,0.2) 100%);
+  border: 1px solid rgba(255,45,45,0.5);
+  animation: pulse-warning 1.5s ease-in-out infinite;
+}
+
+.warning-text {
+  color: #ff2d2d;
+  text-shadow: 0 0 10px rgba(255,45,45,0.5);
+}
+
+.warning-icon {
+  color: #ff2d2d;
+  animation: pulse-warning 1.5s ease-in-out infinite;
+}
+
+@keyframes float-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.countdown-enter {
+  animation: float-up 0.8s ease-out forwards;
+}
